@@ -1,0 +1,20 @@
+{
+    "aws": {
+        "key":"YOUR_KEY",
+        "secret":"YOUR_SECRET",
+        "region":"YUR_REGION"
+    },
+    "alarms" : {
+        "action":"YOUR_ALARM_ACTION_ARM"
+    },
+    "metrics": [
+        {
+            "Solr" : {
+                "name" : "Solr",
+                "url": "http://localhost:8080/solr/collection1/admin/ping",
+                "namespace": "YOUR_NAMESPACE",
+                "description": "YOUR_COMMENT"
+            }
+        }
+    ]
+}
