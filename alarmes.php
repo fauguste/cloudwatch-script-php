@@ -5,13 +5,12 @@ define('APPLICATION_PATH', realpath(dirname(__FILE__)));
 $paths = array(
         APPLICATION_PATH,
         APPLICATION_PATH . '/src',
-        APPLICATION_PATH . '/lib',
         get_include_path()
 );
 set_include_path(implode(PATH_SEPARATOR, $paths));
 
 include 'autoload.php';
-include 'aws.phar';
+include APPLICATION_PATH . '/vendor/autoload.php';
 
 use Aws\CloudWatch\CloudWatchClient;
 

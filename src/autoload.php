@@ -1,23 +1,42 @@
 <?php
 
-function autoload($class_name)
+class NoClassFoundException extends \Exception
 {
-	$fileExtArr = array('.php', '.class.php');
-	
-	$includePath = get_include_path();
-	$pathDirArr = explode(PATH_SEPARATOR, $includePath);
 
-	foreach ($pathDirArr as $pathDir) {
-		foreach ($fileExtArr as $fileExt) {
-			$path = $pathDir.'/'.str_replace('\\', '/', $class_name).$fileExt;
-			if (file_exists($path)) {
-				require_once($path);
-        		return;
-			}
-		}
-	}
+    public function __construct($className)
+    {
+        $this->message = "No matching file for class $className in " .
+             get_include_path();
+    }
+}
 
-//  throw new Exception('No matching file for class '.$class_name);
+function autoload($className)
+{
+    $prefix = 'CloudWatchScript';
+    $len = strlen($prefix);
+    if (strncmp($prefix, $className, $len) !== 0) {
+        // no, move to the next registered autoloader
+        return;
+    }
+    $fileExtArr = array(
+        '.php',
+        '.class.php'
+    );
+    $includePath = get_include_path();
+    $pathDirArr = explode(PATH_SEPARATOR, $includePath);
+    
+    foreach ($pathDirArr as $pathDir) {
+        foreach ($fileExtArr as $fileExt) {
+            $path = $pathDir . '/' . str_replace('\\', '/', $className) .
+                 $fileExt;
+            if (file_exists($path)) {
+                require_once ($path);
+                
+                return;
+            }
+        }
+    }
+    throw new NoClassFoundException($className);
 }
 
 spl_autoload_register('autoload');
