@@ -30,7 +30,7 @@ foreach ($conf->metrics as $metrics) {
     foreach($metrics as $metricName => $metric){
         $className = "CloudWatchScript\\Plugins\\" . $metricName . "Monitoring";
 
-        $metricController = new $className($metric);
+        $metricController = new $className($metric, $metricName);
 
         if(!array_key_exists($metric->namespace, $metricsToPush)) {
             $metricsToPush[$metric->namespace] = array();

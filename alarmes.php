@@ -36,29 +36,32 @@ foreach ($conf->metrics as $metrics) {
     foreach($metrics as $metricName => $metric){
         $className = "CloudWatchScript\\Plugins\\" . $metricName . "Monitoring";
 
-        $metricController = new $className($metric);
-        $client->putMetricAlarm(array(
-                'AlarmName' => $metric->name,
-                'AlarmDescription' => $metric->description,
-                'ActionsEnabled' => true,
-                'OKActions' => array($conf->alarms->action  ),
-                'AlarmActions' => array($conf->alarms->action ),
-                'InsufficientDataActions' => array($conf->alarms->action),
-                'Dimensions' => array(
-                                array('Name' => 'InstanceId', 'Value' => $instanceId),
-                                array('Name' => 'Metrics', 'Value' => $metricName)
-                ),
-                'MetricName' => $metric->name,
-                'Namespace' => $metric->namespace,
-                'Statistic' => 'Average',
-                'Period' => 300,
-                'Unit' => $metricController->getUnit(),
-                // EvaluationPeriods is required
-                'EvaluationPeriods' => 2,
-                // Threshold is required
-                'Threshold' => $metricController->getAlarmeThreshold(),
-                // ComparisonOperator is required
-                'ComparisonOperator' => $metricController->getComparisonOperator(),
-        ));
+        $metricController = new $className($metric,  $metric->name);
+        
+        foreach ($metricController->getAlarms() as $key => $alarm) { 
+            $client->putMetricAlarm(array(
+                    'AlarmName' => $alarm["Name"],
+                    'AlarmDescription' => $metric->description,
+                    'ActionsEnabled' => true,
+                    'OKActions' => array($conf->alarms->action  ),
+                    'AlarmActions' => array($conf->alarms->action ),
+                    'InsufficientDataActions' => array($conf->alarms->action),
+                    'Dimensions' => array(
+                                    array('Name' => 'InstanceId', 'Value' => $instanceId),
+                                    array('Name' => 'Metrics', 'Value' => $metricName)
+                    ),
+                    'MetricName' => $metric->name,
+                    'Namespace' => $metric->namespace,
+                    'Statistic' => 'Average',
+                    'Period' => 300,
+                    'Unit' => $metricController->getUnit(),
+                    // EvaluationPeriods is required
+                    'EvaluationPeriods' => 2,
+                    // Threshold is required
+                    'Threshold' => $alarm["Threshold"],
+                    // ComparisonOperator is required
+                    'ComparisonOperator' => $alarm["ComparisonOperator"]
+            ));
+        }
     }
 }

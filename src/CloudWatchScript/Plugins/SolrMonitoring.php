@@ -18,9 +18,10 @@ class SolrMonitoring extends AbstractMonitoring
     private $solrPingUrl;
     /**
      * @param array $config
+     * @param String $name
      */
-    function __construct($config) {
-       parent::__construct($config);
+    function __construct($config, $name) {
+       parent::__construct($config, $name);
        $this->solrPingUrl = $this->config->url;
     }
     /**
@@ -44,13 +45,11 @@ class SolrMonitoring extends AbstractMonitoring
     /**
      * @return 1
      */
-    public function getAlarmeThreshold() {
-        return 1;
-    }
-    /**
-     * @return LessThanThreshold
-     */
-    public function getComparisonOperator() {
-        return "LessThanThreshold";
+    public function getAlarms() {
+        return array( 
+                    array("ComparisonOperator" => "LessThanThreshold", 
+                          "Threshold" => 1, 
+                          "Name" => $this->name)
+                    );
     }
 }
