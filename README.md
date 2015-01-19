@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/fauguste/cloudwatch-script-php.svg)](https://travis-ci.org/fauguste/cloudwatch-script-php)
+
 # Amazon CloudWatch Monitoring Scripts for EC2 Instance
 
 This project provide some scripts in order to monitor your EC2 instances with Cloud Watch.
