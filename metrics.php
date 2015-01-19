@@ -1,15 +1,6 @@
 <?php
 define('APPLICATION_PATH', realpath(dirname(__FILE__)));
 
-// Build array of 3 different paths
-$paths = array(
-        APPLICATION_PATH,
-        APPLICATION_PATH . '/src',
-        get_include_path()
-);
-set_include_path(implode(PATH_SEPARATOR, $paths));
-
-include 'autoload.php';
 include APPLICATION_PATH . '/vendor/autoload.php';
 
 use Aws\CloudWatch\CloudWatchClient;
@@ -20,6 +11,7 @@ if($conf == false) {
     echo "Conf file is not valid";
     die();
 }
+
 // Store metric by namespace in order to call "AWS Could Watch" one time per namespace
 $metricsToPush = array();
 
