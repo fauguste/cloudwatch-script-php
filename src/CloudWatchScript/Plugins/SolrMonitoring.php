@@ -37,13 +37,13 @@ class SolrMonitoring extends AbstractMonitoring
         }
     }
     /**
-     * @return "None"
+     * @return string "None"
      */
     public function getUnit() {
         return "None";
     }
     /**
-     * @return 1
+     * @return integer 1
      */
     public function getAlarms() {
         return array( 
