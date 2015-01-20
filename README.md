@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/fauguste/cloudwatch-script-php.svg)](https://travis-ci.org/fauguste/cloudwatch-script-php)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fauguste/cloudwatch-script-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fauguste/cloudwatch-script-php/?branch=master)
 
 # Amazon CloudWatch Monitoring Scripts for EC2 Instance
 
