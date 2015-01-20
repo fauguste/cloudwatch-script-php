@@ -27,7 +27,7 @@ php -f metrics.php
 
 Create alarme in Cloud Watch (Run one time)
 ```
-    php -f alarmes.php
+php -f alarmes.php
 ```
 
 ## Plugins 
@@ -35,6 +35,7 @@ Create alarme in Cloud Watch (Run one time)
 | Name | Description          |
 | ------------- | ----------- |
 | Solr      | Monitoring ping solr URL |
+| Apache | Monitoring apache process number |
 
 ## License
 
