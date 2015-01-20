@@ -27,7 +27,7 @@ class ApacheMonitoring extends AbstractMonitoring
     }
     
     /**
-     * @return Number of apache processus
+     * @return integer Number of apache processus
      */
     public function getMetric() {
         exec('ps aux | grep apache', $output);
@@ -35,7 +35,7 @@ class ApacheMonitoring extends AbstractMonitoring
     
     }
     /**
-     * @return "None"
+     * @return string "None"
      */
     public function getUnit() {
         return "None";
