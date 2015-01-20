@@ -29,7 +29,7 @@ class SolrMonitoring extends AbstractMonitoring
      * @return metric 0 Ok, 1 KO
      */
     public function getMetric() {
-        if(file_get_contents($this->solrPingUrl) === false) {
+        if(@file_get_contents($this->solrPingUrl) === false) {
             return 0;
         }
         else {

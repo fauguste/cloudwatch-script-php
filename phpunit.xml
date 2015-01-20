@@ -3,29 +3,9 @@
 <phpunit bootstrap="tests/bootstrap.php">
     <testsuites>
         <testsuite name="Librairie test case">
-            <directory>test/src/</directory>
+            <directory>tests/src/</directory>
         </testsuite>
     </testsuites>
-    <!-- Ne pas afficher les librairies dans le code de tests -->
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">../lib/</directory>
-            <directory suffix=".php">../silo</directory>
-            <directory suffix=".php">../pilote</directory>
-            <exclude>
-                <directory suffix=".php">../silo/script</directory>
-                <directory suffix=".php">../silo/public</directory>
-                <directory suffix=".php">../pilote/public</directory>
-                <file>../lib/src/Ecrm/Guzzle/CommandContentHMACPlugin_Guzzlev4.php</file>                
-            </exclude>
-        </whitelist>
-        
-        <blacklist>
-            <directory suffix=".php">../vendor/</directory>
-            <directory suffix=".php">vendor/</directory>
-        </blacklist>
-
-    </filter>
     <logging>
         <log type="coverage-html" target="build/coverage"/>
         <log type="coverage-clover" target="build/logs/clover.xml"/>
