@@ -1,0 +1,11 @@
+# Eclipse
+.project
+.buildpath
+.settings
+
+# Composer
+vendor/
+composer.lock
+
+# Php unit
+build/
