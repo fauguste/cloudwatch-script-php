@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/fauguste/cloudwatch-script-php.svg)](https://travis-ci.org/fauguste/cloudwatch-script-php)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fauguste/cloudwatch-script-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fauguste/cloudwatch-script-php/?branch=master)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/482807e9-f93b-48f0-8dd5-51d3cc1b673f/mini.png)](https://insight.sensiolabs.com/projects/482807e9-f93b-48f0-8dd5-51d3cc1b673f)
 
 # Amazon CloudWatch Monitoring Scripts for EC2 Instance
 
