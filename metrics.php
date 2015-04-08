@@ -7,7 +7,7 @@ use Aws\CloudWatch\CloudWatchClient;
 
 // Load config file.
 $conf = json_decode(file_get_contents(APPLICATION_PATH.'/conf/config.json'));
-if($conf == false) {
+if($conf === false) {
     echo "Conf file is not valid";
     die();
 }
