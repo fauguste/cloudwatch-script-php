@@ -2,6 +2,9 @@
 	"require": {
 		"aws/aws-sdk-php": "2.6.10"
 	},
+	"require-dev": { 
+	    "codeclimate/php-test-reporter": "dev-master"
+	},
 	"autoload": {
         "psr-0": {
             "CloudWatchScript\\": "src/"

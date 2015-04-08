@@ -8,7 +8,13 @@ php:
 - hhvm
 
 install:
-  - composer install --verbose
+  - composer install --verbose --dev
   
 before_script: 
 - curl -sSL https://raw.githubusercontent.com/moliware/travis-solr/master/travis-solr.sh | SOLR_VERSION=4.10.3 bash
+
+script:
+- phpunit --coverage-clover build/logs/clover.xml
+
+after_script:
+- CODECLIMATE_REPO_TOKEN=f902cf0106a533c8e71e32f334ce4464167a58b0daaf883ddc30c8dcd6a323f1 ./vendor/bin/test-reporter
