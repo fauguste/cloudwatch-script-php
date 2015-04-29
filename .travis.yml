@@ -15,3 +15,16 @@ before_script:
 
 after_script:
 - CODECLIMATE_REPO_TOKEN=f902cf0106a533c8e71e32f334ce4464167a58b0daaf883ddc30c8dcd6a323f1 ./vendor/bin/test-reporter
+
+
+before_deploy:
+- tar -zcf bin.tgz conf src LICENSE README.md alarmes.php metrics.php
+
+deploy:
+  provider: releases
+  api_key: 
+    secure: hF0Ni/BeP8J27UfKArOLbxh4luVWO0LJmoxwMiJYRPIjyWgvSXQ10pxZ0Ygr8ea+FBrE0FktNqeoUz8lu5aoehJuGTCKlGfRUWfZDbv4lXMDLa853x62IiICNEeZdUHvg3QZOcyE+u6mnTvuHcB61IOq+Dr/vyL+uAWmAzazbdA=
+  file: "bin.tgz"
+  skip_cleanup: true
+  on:
+    tags: true
