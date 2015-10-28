@@ -17,20 +17,50 @@ php5-cli, php5-curl
 
 ## Configuration
 
+Autorize this policy :
+````
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1446055544000",
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricAlarm",
+                "cloudwatch:PutMetricData"
+            ],
+            "Resource": [
+                "*"
+            ]
+        }
+    ]
+}
+````
+
+### Using IAM roles 
+````
+   'profil':'YOUR_PROFIL',
+````
+
+### Using creadential
 Add your key and secret in the config file.
-Add the metrics you need execute in the config file.
+````
+   'key':'YOUR_KEY',
+   'secret':'YOUR_SECRET',
+````
+
 
 ## Usage
 
 Send metrics to Cloud Watch (Run every 5 minutes)`
 
 ```
-php -f metrics.php
+php metrics.php [-f config-file]
 ```
 
 Create alarme in Cloud Watch (Run one time)
 ```
-php -f alarmes.php
+php alarmes.php [-f config-file]
 ```
 
 ## Plugins 
