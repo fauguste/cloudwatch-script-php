@@ -2,8 +2,10 @@
 define('APPLICATION_PATH', realpath(dirname(__FILE__)));
 
 include APPLICATION_PATH . '/vendor/autoload.php';
+require_once 'lib.php';
 
 use Aws\CloudWatch\CloudWatchClient;
+
 
 // Load config file.
 $conf = json_decode(file_get_contents(APPLICATION_PATH.'/conf/config.json'));
@@ -17,11 +19,7 @@ $metricsToPush = array();
 // Get Instance Id
 $instanceId = file_get_contents("http://169.254.169.254/latest/meta-data/instance-id");
 
-$client = CloudWatchClient::factory(array(
-        'key'    => $conf->aws->key,
-        'secret' => $conf->aws->secret,
-        'region' => $conf->aws->region
-));
+$client = getCloudWatchClient($conf);
 
 foreach ($conf->metrics as $metrics) {
     foreach($metrics as $metricName => $metric){

@@ -2,6 +2,7 @@
 define('APPLICATION_PATH', realpath(dirname(__FILE__)));
 
 include APPLICATION_PATH . '/vendor/autoload.php';
+require_once 'lib.php';
 
 use Aws\CloudWatch\CloudWatchClient;
 
@@ -38,11 +39,7 @@ foreach ($conf->metrics as $metrics) {
     }
 }
 
-$client = CloudWatchClient::factory(array(
-        'key'    => $conf->aws->key,
-        'secret' => $conf->aws->secret,
-        'region' => $conf->aws->region
-));
+$client = getCloudWatchClient($conf);
 
 foreach ($metricsToPush as $namespace => $metricData) {
     $client->putMetricData(array(
