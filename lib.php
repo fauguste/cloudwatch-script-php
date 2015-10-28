@@ -22,3 +22,14 @@ function getCloudWatchClient($conf) {
     }
 } 
 
+function getConfigFile() {
+    $longopts  = array(
+      "required:"     // Valeur requise
+    );
+    if(array_key_exists('f', $args = getopt("f:", $longopts))) {
+        return json_decode(file_get_contents($args['f']));
+    }
+    else {
+        return json_decode(file_get_contents(APPLICATION_PATH.'/conf/config.json'));
+    }
+}

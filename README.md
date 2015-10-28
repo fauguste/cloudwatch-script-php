@@ -55,12 +55,12 @@ Add your key and secret in the config file.
 Send metrics to Cloud Watch (Run every 5 minutes)`
 
 ```
-php -f metrics.php
+php metrics.php [-f config-file]
 ```
 
 Create alarme in Cloud Watch (Run one time)
 ```
-php -f alarmes.php
+php alarmes.php [-f config-file]
 ```
 
 ## Plugins 
