@@ -17,8 +17,38 @@ php5-cli, php5-curl
 
 ## Configuration
 
+Autorize this policy :
+````
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1446055544000",
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricAlarm",
+                "cloudwatch:PutMetricData"
+            ],
+            "Resource": [
+                "*"
+            ]
+        }
+    ]
+}
+````
+
+### Using IAM roles 
+````
+   'profil':'YOUR_PROFIL',
+````
+
+### Using creadential
 Add your key and secret in the config file.
-Add the metrics you need execute in the config file.
+````
+   'key':'YOUR_KEY',
+   'secret':'YOUR_SECRET',
+````
+
 
 ## Usage
 
