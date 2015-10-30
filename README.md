@@ -70,6 +70,7 @@ php alarmes.php [-f config-file]
 | Solr      | Monitoring ping solr URL |
 | Apache | Monitoring apache process number |
 | Disk | Monitoring disk usage |
+| Sftp | Monitoring SFTP access |
 
 ## License
 
