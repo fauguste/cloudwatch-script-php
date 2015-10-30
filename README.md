@@ -6,7 +6,7 @@
 # Amazon CloudWatch Monitoring Scripts for EC2 Instance
 
 This project provide some scripts in order to monitor your EC2 instances with Cloud Watch.
-You can add some script on own script in the plugin directory. 
+You can add some script on own script in the plugin directory.
 
 ## Prerequite
 
@@ -37,7 +37,7 @@ Autorize this policy :
 }
 ````
 
-### Using IAM roles 
+### Using IAM roles
 ````
    'profil':'YOUR_PROFIL',
 ````
@@ -63,12 +63,13 @@ Create alarme in Cloud Watch (Run one time)
 php alarmes.php [-f config-file]
 ```
 
-## Plugins 
+## Plugins
 
 | Name | Description          |
 | ------------- | ----------- |
 | Solr      | Monitoring ping solr URL |
 | Apache | Monitoring apache process number |
+| Disk | Monitoring disk usage |
 
 ## License
 
