@@ -7,44 +7,48 @@ use CloudWatchScript\AbstractMonitoring;
  * Check Solr using ping URL.
  * Add and configure the folliwong lines to the config file
  * "Apache" : {
- *         "name" : "Name of metric and alarm", 
- *         "maxProcess": 100, 
- *         "namespace": "Metric/Namespace", 
+ *         "name" : "Name of metric and alarm",
+ *         "maxProcess": 100,
+ *         "namespace": "Metric/Namespace",
  *         "description": "Description"
  * }
  */
 class ApacheMonitoring extends AbstractMonitoring
 {
     private $maxApacheProcess;
-    
+
     /**
      * @param array $config
      * @param String $name
      */
-    function __construct($config, $name) {
-       parent::__construct($config, $name);
-       $this->maxApacheProcess = $this->config->maxProcess;
+    public function __construct($config, $name)
+    {
+        parent::__construct($config, $name);
+        $this->maxApacheProcess = $this->config->maxProcess;
     }
-    
+
     /**
      * @return integer Number of apache processus
      */
-    public function getMetric() {
+    public function getMetric()
+    {
         exec('ps aux | grep apache', $output);
         return count($output);
-    
+
     }
     /**
      * @return string "None"
      */
-    public function getUnit() {
+    public function getUnit()
+    {
         return "None";
     }
-    
+
     /**
      * @return array Alarm min and max for number of apache process
      */
-    public function getAlarms() {
+    public function getAlarms()
+    {
         return array(
                 array("ComparisonOperator" => "LessThanOrEqualToThreshold",
                         "Threshold" => 0,

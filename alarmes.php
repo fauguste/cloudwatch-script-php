@@ -6,10 +6,9 @@ require_once 'lib.php';
 
 use Aws\CloudWatch\CloudWatchClient;
 
-
 // Load config file.
 $conf = getConfigFile();
-if($conf === false) {
+if ($conf === false) {
     echo "Conf file is not valid";
     die();
 }
@@ -22,12 +21,12 @@ $instanceId = file_get_contents("http://169.254.169.254/latest/meta-data/instanc
 $client = getCloudWatchClient($conf);
 
 foreach ($conf->metrics as $metrics) {
-    foreach($metrics as $metricName => $metric){
+    foreach ($metrics as $metricName => $metric) {
         $className = "CloudWatchScript\\Plugins\\" . $metricName . "Monitoring";
 
         $metricController = new $className($metric,  $metric->name);
-        
-        foreach ($metricController->getAlarms() as $key => $alarm) { 
+
+        foreach ($metricController->getAlarms() as $key => $alarm) {
             $client->putMetricAlarm(array(
                     'AlarmName' => $alarm["Name"],
                     'AlarmDescription' => $metric->description,

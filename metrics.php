@@ -8,7 +8,7 @@ use Aws\CloudWatch\CloudWatchClient;
 
 // Load config file.
 $conf = getConfigFile();
-if($conf === false) {
+if ($conf === false) {
     echo "Conf file is not valid";
     die();
 }
@@ -20,21 +20,24 @@ $metricsToPush = array();
 $instanceId = file_get_contents("http://169.254.169.254/latest/meta-data/instance-id");
 
 foreach ($conf->metrics as $metrics) {
-    foreach($metrics as $metricName => $metric){
+    foreach ($metrics as $metricName => $metric) {
         $className = "CloudWatchScript\\Plugins\\" . $metricName . "Monitoring";
 
         $metricController = new $className($metric, $metricName);
 
-        if(!array_key_exists($metric->namespace, $metricsToPush)) {
+        if (!array_key_exists($metric->namespace, $metricsToPush)) {
             $metricsToPush[$metric->namespace] = array();
         }
-        
+
         $metricsToPush[$metric->namespace][] =  array(
                 'MetricName' => $metric->name,
                 'Timestamp'  => time(),
                 'Value'      => $metricController->getMetric(),
                 'Unit'       => $metricController->getUnit(),
-                'Dimensions' => array(array('Name' => 'InstanceId', 'Value' => $instanceId), array('Name' => 'Metrics', 'Value' => $metricName))
+                'Dimensions' => array(
+                                  array('Name' => 'InstanceId', 'Value' => $instanceId),
+                                  array('Name' => 'Metrics', 'Value' => $metricName)
+                                )
         );
     }
 }
