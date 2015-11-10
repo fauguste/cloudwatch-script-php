@@ -1,4 +1,6 @@
 {
+	"name" : "fauguste/cloudwatch-script-php",
+	"description" : "PHP script for cloud watch metrics ans alarms generation",
 	"require": {
 		"aws/aws-sdk-php": "3.9.1"
 	},
