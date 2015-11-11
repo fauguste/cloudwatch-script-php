@@ -4,12 +4,22 @@
 	"require": {
 		"aws/aws-sdk-php": "3.9.1"
 	},
-	"require-dev": { 
+	"require-dev": {
 	    "codeclimate/php-test-reporter": "dev-master"
 	},
 	"autoload": {
-        "psr-0": {
-            "CloudWatchScript\\": "src/"
-        }
+    "psr-0": {
+      "CloudWatchScript\\": "src/"
     }
+  },
+	"license" : "Apache-2.0",
+	"authors": [
+    {
+					 "name": "Frédéric AUGUSTE",
+					 "homepage": "https://github.com/fauguste",
+					 "role": "Developer"
+		}
+	],
+	"type" : "project",
+	"keywords": ["cloudwatch", "monitoring"]
 }
