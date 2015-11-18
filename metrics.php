@@ -21,7 +21,8 @@ $instanceId = file_get_contents("http://169.254.169.254/latest/meta-data/instanc
 
 foreach ($conf->metrics as $metrics) {
     foreach ($metrics as $metricName => $metric) {
-        $className = "CloudWatchScript\\Plugins\\" . $metricName . "Monitoring";
+       $pluginName = isset($metric->{'plugin'})===true?$metric->{'plugin'}:$metricName;
+        $className = "CloudWatchScript\\Plugins\\" . $pluginName  . "Monitoring";
 
         $metricController = new $className($metric, $metricName);
 

@@ -22,7 +22,8 @@ $client = getCloudWatchClient($conf);
 
 foreach ($conf->metrics as $metrics) {
     foreach ($metrics as $metricName => $metric) {
-        $className = "CloudWatchScript\\Plugins\\" . $metricName . "Monitoring";
+        $pluginName = isset($metric->{'plugin'})===true?$metric->{'plugin'}:$metricName;
+        $className = "CloudWatchScript\\Plugins\\" . $pluginName  . "Monitoring";
 
         $metricController = new $className($metric,  $metric->name);
 
