@@ -27,7 +27,8 @@ Autorize this policy :
             "Effect": "Allow",
             "Action": [
                 "cloudwatch:PutMetricAlarm",
-                "cloudwatch:PutMetricData"
+                "cloudwatch:PutMetricData",
+                "cloudwatch:DeleteAlarms"
             ],
             "Resource": [
                 "*"
@@ -61,6 +62,11 @@ php metrics.php [-f config-file]
 Create alarme in Cloud Watch (Run one time)
 ```
 php alarmes.php [-f config-file]
+```
+
+Delte  alarme in Cloud Watch (Run one time)
+```
+php delete-alarmes.php [-f config-file]
 ```
 
 ## Plugins
