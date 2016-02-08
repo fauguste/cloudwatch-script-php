@@ -79,6 +79,7 @@ php delete-alarmes.php [-f config-file]
 | Apache | Monitoring apache process number |
 | Disk | Monitoring disk usage |
 | Sftp | Monitoring SFTP access |
+| Memory | Monitoring memory percentage of used |
 
 ## License
 
