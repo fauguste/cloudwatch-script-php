@@ -80,6 +80,7 @@ php delete-alarmes.php [-f config-file]
 | Disk | Monitoring disk usage |
 | Sftp | Monitoring SFTP access |
 | Memory | Monitoring memory percentage of used |
+| Memory | Monitoring HTTP URL with pattern |
 
 ## License
 

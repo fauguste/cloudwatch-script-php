@@ -58,7 +58,7 @@ class MemoryMonitoring extends AbstractMonitoring
         return array(
                 array("ComparisonOperator" => "GreaterThanThreshold",
                         "Threshold" => $this->maxUsed,
-                        "Name" => $this->name . " exceed " . $this->config->maxUtil . " %")
+                        "Name" => $this->name . " exceed " . $this->config->maxUsed . " %")
         );
       }
   }
