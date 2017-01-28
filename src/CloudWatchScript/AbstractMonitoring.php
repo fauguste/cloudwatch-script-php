@@ -33,4 +33,11 @@ abstract class AbstractMonitoring
      * @return Array Array of alarm list. Each alamr contain ComparisonOperator, Threshold and Name
      */
     abstract public function getAlarms();
+
+    /**
+     * @return The metrics name associate to an alarm name.
+     */
+    public function getMetricName($alarm) {
+      return $this->name;
+    }
 }

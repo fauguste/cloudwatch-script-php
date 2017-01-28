@@ -39,11 +39,11 @@ foreach ($conf->metrics as $metrics) {
                                     array('Name' => 'InstanceId', 'Value' => $instanceId),
                                     array('Name' => 'Metrics', 'Value' => $metricName)
                     ),
-                    'MetricName' => $metric->name,
+                    'MetricName' => $metricController->getMetricName($alarm["Name"]),
                     'Namespace' => $metric->namespace,
                     'Statistic' => 'Average',
                     'Period' => 300,
-                    'Unit' => $metricController->getUnit(),
+                    'Unit' => $metricController->getUnit($alarm["Name"]),
                     // EvaluationPeriods is required
                     'EvaluationPeriods' => 2,
                     // Threshold is required

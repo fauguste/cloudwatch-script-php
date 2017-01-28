@@ -29,17 +29,34 @@ foreach ($conf->metrics as $metrics) {
         if (!array_key_exists($metric->namespace, $metricsToPush)) {
             $metricsToPush[$metric->namespace] = array();
         }
-
-        $metricsToPush[$metric->namespace][] =  array(
-                'MetricName' => $metric->name,
-                'Timestamp'  => time(),
-                'Value'      => $metricController->getMetric(),
-                'Unit'       => $metricController->getUnit(),
-                'Dimensions' => array(
-                                  array('Name' => 'InstanceId', 'Value' => $instanceId),
-                                  array('Name' => 'Metrics', 'Value' => $metricName)
-                                )
-        );
+        $metrics = $metricController->getMetric();
+        if(is_array($metrics)) {
+          $units = $metricController->getUnit();
+          foreach ($metrics as $metricId => $value) {
+            $metricsToPush[$metric->namespace][] =  array(
+                    'MetricName' => $metric->name . " " . $metricId,
+                    'Timestamp'  => time(),
+                    'Value'      => $value,
+                    'Unit'       => $units[$metricId],
+                    'Dimensions' => array(
+                                      array('Name' => 'InstanceId', 'Value' => $instanceId),
+                                      array('Name' => 'Metrics', 'Value' => $metricName)
+                                    )
+            );
+          }
+        }
+        else {
+          $metricsToPush[$metric->namespace][] =  array(
+                  'MetricName' => $metric->name,
+                  'Timestamp'  => time(),
+                  'Value'      => $metrics,
+                  'Unit'       => $metricController->getUnit(),
+                  'Dimensions' => array(
+                                    array('Name' => 'InstanceId', 'Value' => $instanceId),
+                                    array('Name' => 'Metrics', 'Value' => $metricName)
+                                  )
+          );
+        }
     }
 }
 
