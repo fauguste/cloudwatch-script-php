@@ -17,7 +17,12 @@ if ($conf === false) {
 $metricsToPush = array();
 
 // Get Instance Id
-$instanceId = file_get_contents("http://169.254.169.254/latest/meta-data/instance-id");
+if($conf->aws->instance) {
+    $instanceId = $conf->aws->instance;
+}
+else {
+    $instanceId = file_get_contents("http://169.254.169.254/latest/meta-data/instance-id");
+}
 
 foreach ($conf->metrics as $metrics) {
     foreach ($metrics as $metricName => $metric) {

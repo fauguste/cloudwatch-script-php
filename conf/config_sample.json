@@ -2,7 +2,8 @@
     "aws": {
         "key":"YOUR_KEY",
         "secret":"YOUR_SECRET",
-        "region":"YUR_REGION"
+        "region":"YUR_REGION",
+        "instance":"INSTANCE_ID"
     },
     "alarms" : {
         "action":"YOUR_ALARM_ACTION_ARM"
