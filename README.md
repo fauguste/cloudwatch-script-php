@@ -82,6 +82,8 @@ php delete-alarmes.php [-f config-file]
 | Memory | Monitoring memory percentage of used |
 | Http | Monitoring HTTP URL with pattern |
 | Elastics | Monitoring elastic search |
+| SolrCdcr | Monitoring CDCR |
+
 
 ## License
 
