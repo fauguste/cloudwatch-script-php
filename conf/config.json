@@ -1,0 +1,20 @@
+{
+    "aws": {
+        "profil": "SilamirCloudWatchRole",
+        "region":"Ireland",
+        "instance":"i-8ca2b81b"
+    },
+    "alarms" : {
+        "action":"YOUR_ALARM_ACTION_ARN"
+    },
+    "metrics": [
+        {
+            "Inodes" : {
+                "name" : "INodes",
+                "maxUsed": 90,
+                "namespace": "Metric/INodes",
+                "description": "Get INodes percentage current instance usage"
+            }
+        }
+    ]
+}
