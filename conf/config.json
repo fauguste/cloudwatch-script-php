@@ -1,8 +1,8 @@
 {
     "aws": {
         "profil": "SilamirCloudWatchRole",
-        "region":"Ireland",
-        "instance":"i-8ca2b81b"
+        "region":"eu-west-1c",
+        "instance":"i-0ab456f219bf9818f"
     },
     "alarms" : {
         "action":"YOUR_ALARM_ACTION_ARN"
