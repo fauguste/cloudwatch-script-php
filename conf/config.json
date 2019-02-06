@@ -1,7 +1,7 @@
 {
     "aws": {
         "profil": "SilamirCloudWatchRole",
-        "region":"eu-west-1c",
+        "region":"eu-west-1",
         "instance":"i-0ab456f219bf9818f"
     },
     "alarms" : {
