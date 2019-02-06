@@ -32,7 +32,9 @@ class INodesMonitoring extends AbstractMonitoring
      */
     public function getMetric()
     {
-        $percent = exec("df / -i | grep \'/$\' | grep '..%' -o");
+//        $percent = exec("df / -i | grep \'/$\' | grep '..%' -o");
+        $percent = exec("df -i / | grep '..%' -o | tail -1");
+        $percent = preg_replace("/[^0-9]/", "", $percent);
         return (int)$percent;
     }
 
