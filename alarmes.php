@@ -37,8 +37,8 @@ foreach ($conf->metrics as $metrics) {
                     'AlarmName' => $alarm["Name"],
                     'AlarmDescription' => $metric->description,
                     'ActionsEnabled' => true,
-                    'OKActions' => array($conf->alarms->action  ),
-                    'AlarmActions' => array($conf->alarms->action ),
+                    'OKActions' => array($conf->alarms->action),
+                    'AlarmActions' => array($conf->alarms->action),
                     'InsufficientDataActions' => array($conf->alarms->action),
                     'Dimensions' => array(
                                     array('Name' => 'InstanceId', 'Value' => $instanceId),
