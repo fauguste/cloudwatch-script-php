@@ -35,9 +35,9 @@ abstract class AbstractMonitoring
     abstract public function getAlarms();
 
     /**
-     * @return The metrics name associate to an alarm name.
+     * @return String The metrics name associate to an alarm name.
      */
-    public function getMetricName($alarm) {
+    public function getMetricName() {
       return $this->name;
     }
 }

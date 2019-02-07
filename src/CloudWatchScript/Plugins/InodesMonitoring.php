@@ -6,14 +6,14 @@ use CloudWatchScript\AbstractMonitoring;
 /**
  * Check Solr using ping URL.
  * Add and configure the following lines to the config file
- * "Inodes" : {
- *         "name" : "Name of metric and alarm",
+ * "INodes" : {
+ *         "name" : "INodes",
  *         "maxUsed": 90,
- *         "namespace": "Metric/Namespace",
- *         "description": "Description"
+ *         "namespace": "Metric/INodes",
+ *         "description": "Get INodes percentage current instance usage"
  * }
  */
-class InodesMonitoring extends AbstractMonitoring
+class INodesMonitoring extends AbstractMonitoring
 {
     private $maxUsed;
 
@@ -28,16 +28,17 @@ class InodesMonitoring extends AbstractMonitoring
     }
 
     /**
-     * @return integer Percentage of use memory
+     * @return integer Percentage of used iNodes
      */
     public function getMetric()
     {
-        $percent = exec("df / -i | grep \'/$\' | grep '..%' -o");
+        $percent = exec("df -i / | grep '..%' -o | tail -1");
+        $percent = preg_replace("/[^0-9]/", "", $percent);
         return (int)$percent;
     }
 
     /**
-     * @return string "None"
+     * @return string "Percent"
      */
     public function getUnit()
     {
@@ -45,14 +46,16 @@ class InodesMonitoring extends AbstractMonitoring
     }
 
     /**
-     * @return array Alarm max for memory used
+     * @return array Alarm for max INodes used
      */
     public function getAlarms()
     {
         return array(
-                array("ComparisonOperator" => "GreaterThanThreshold",
-                        "Threshold" => $this->maxUsed,
-                        "Name" => $this->name . " exceed " . $this->config->maxUsed . " %")
+            array(
+                "ComparisonOperator" => "GreaterThanThreshold",
+                "Threshold" => $this->maxUsed,
+                "Name" => $this->name . " exceed " . $this->config->maxUsed . " %"
+            )
         );
-      }
-  }
+    }
+}

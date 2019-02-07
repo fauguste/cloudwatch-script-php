@@ -5,7 +5,7 @@ use CloudWatchScript\AbstractMonitoring;
 
 /**
  * Check Solr using ping URL.
- * Add and configure the folliwong lines to the config file
+ * Add and configure the following lines to the config file
  * "Sftp" : {
  *         "name" : "Name of metric and alarm",
  *         "addr": "127.0.0.1",
@@ -13,7 +13,7 @@ use CloudWatchScript\AbstractMonitoring;
  *         "login": "login",
  *         "password": "password",
  *         "namespace": "Metric/Namespace",
- *         "description": "Descrption"
+ *         "description": "Description"
  * }
  */
 class SftpMonitoring extends AbstractMonitoring
