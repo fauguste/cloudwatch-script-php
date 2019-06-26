@@ -6,19 +6,23 @@
 
 # Amazon CloudWatch Monitoring Scripts for EC2 Instance
 
-This project provide some scripts in order to monitor your EC2 instances with Cloud Watch.
-You can add some script on own script in the plugin directory.
+This project provide some scripts in order to monitor your EC2 instances with CloudWatch.  
+You can add your own scripts in the plugin directory.
 
-## Prerequite
+## Requirements
 
-This library are require for this project :
+This libraries are required for this project :  
 ```
+# Using PHP5
 php5-cli, php5-curl
+
+# Using PHP7
+php-cli, php-curl
 ```
 
 ## Configuration
 
-Autorize this policy :
+Authorize this policy :
 ````
 {
     "Version": "2012-10-17",
@@ -44,7 +48,7 @@ Autorize this policy :
    'profil':'YOUR_PROFIL',
 ````
 
-### Using creadential
+### Using credentials
 Add your key and secret in the config file.
 ````
    'key':'YOUR_KEY',
@@ -54,18 +58,18 @@ Add your key and secret in the config file.
 
 ## Usage
 
-Send metrics to Cloud Watch (Run every 5 minutes)`
+Send metrics to CloudWatch (Run every 5 minutes)`
 
 ```
 php metrics.php [-f config-file]
 ```
 
-Create alarme in Cloud Watch (Run one time)
+Create alarms in CloudWatch (Run one time)
 ```
 php alarmes.php [-f config-file]
 ```
 
-Delte  alarme in Cloud Watch (Run one time)
+Delete alarms in CloudWatch (Run one time)
 ```
 php delete-alarmes.php [-f config-file]
 ```
@@ -77,6 +81,7 @@ php delete-alarmes.php [-f config-file]
 | Solr      | Monitoring ping solr URL |
 | Apache | Monitoring apache process number |
 | Disk | Monitoring disk usage |
+| Inodes | Monitoring disk inodes usage |
 | Sftp | Monitoring SFTP access |
 | Memory | Monitoring memory percentage of used |
 | Http | Monitoring HTTP URL with pattern |
