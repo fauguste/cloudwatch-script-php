@@ -1,4 +1,5 @@
 <?php
+
 namespace CloudWatchScript\Plugins;
 
 use CloudWatchScript\AbstractMonitoring;
@@ -18,6 +19,7 @@ class HttpMonitoring extends AbstractMonitoring
 {
     private $url;
     private $pattern;
+
     /**
      * @param array $config
      * @param String $name
@@ -28,6 +30,7 @@ class HttpMonitoring extends AbstractMonitoring
         $this->url = $this->config->url;
         $this->pattern = $this->config->pattern;
     }
+
     /**
      * Check solr ping url.
      * @return metric 0 Ok, 1 KO
@@ -38,8 +41,9 @@ class HttpMonitoring extends AbstractMonitoring
         if ($result === false) {
             return 0;
         }
-        return ereg($this->pattern, $result)==true?"1":"0";
+        return preg_match("/" . $this->pattern . "/", $result) ? "1" : "0";
     }
+
     /**
      * @return string "None"
      */
@@ -47,15 +51,18 @@ class HttpMonitoring extends AbstractMonitoring
     {
         return "None";
     }
+
     /**
      * @return integer 1
      */
     public function getAlarms()
     {
         return array(
-                    array("ComparisonOperator" => "LessThanThreshold",
-                          "Threshold" => 1,
-                          "Name" => $this->name)
-                    );
+            array(
+                "ComparisonOperator" => "LessThanThreshold",
+                "Threshold" => 1,
+                "Name" => $this->name
+            )
+        );
     }
 }
