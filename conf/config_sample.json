@@ -2,7 +2,7 @@
     "aws": {
         "key":"YOUR_KEY",
         "secret":"YOUR_SECRET",
-        "region":"YUR_REGION",
+        "region":"YOUR_REGION",
         "instance":"INSTANCE_ID"
     },
     "alarms" : {
@@ -14,7 +14,9 @@
                 "name" : "Solr",
                 "url": "http://localhost:8080/solr/collection1/admin/ping",
                 "namespace": "YOUR_NAMESPACE",
-                "description": "YOUR_COMMENT"
+                "description": "YOUR_COMMENT",
+                "period": "YOUR_PERIOD (optional)",
+                "action": "YOUR_SPECIFIC_ACTION_ARM (optional)"
             }
         }
     ]
