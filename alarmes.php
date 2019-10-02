@@ -23,12 +23,15 @@ else {
     $instanceId = file_get_contents("http://169.254.169.254/latest/meta-data/instance-id");
 }
 
+
 $client = getCloudWatchClient($conf);
 
 foreach ($conf->metrics as $metrics) {
     foreach ($metrics as $metricName => $metric) {
         $pluginName = isset($metric->{'plugin'})===true?$metric->{'plugin'}:$metricName;
         $className = "CloudWatchScript\\Plugins\\" . $pluginName  . "Monitoring";
+        $period = isset($metric->period) === true ? $metric->period : 300;
+        $action = isset($metric->action) === true ? $metric->action : $conf->alarms->action;
 
         $metricController = new $className($metric,  $metric->name);
 
@@ -37,9 +40,9 @@ foreach ($conf->metrics as $metrics) {
                     'AlarmName' => $alarm["Name"],
                     'AlarmDescription' => $metric->description,
                     'ActionsEnabled' => true,
-                    'OKActions' => array($conf->alarms->action),
-                    'AlarmActions' => array($conf->alarms->action),
-                    'InsufficientDataActions' => array($conf->alarms->action),
+                    'OKActions' => array($action),
+                    'AlarmActions' => array($action),
+                    'InsufficientDataActions' => array($action),
                     'Dimensions' => array(
                                     array('Name' => 'InstanceId', 'Value' => $instanceId),
                                     array('Name' => 'Metrics', 'Value' => $metricName)
@@ -47,7 +50,7 @@ foreach ($conf->metrics as $metrics) {
                     'MetricName' => $metricController->getMetricName($alarm["Name"]),
                     'Namespace' => $metric->namespace,
                     'Statistic' => 'Average',
-                    'Period' => 300,
+                    'Period' => $period,
                     'Unit' => $metricController->getUnit($alarm["Name"]),
                     // EvaluationPeriods is required
                     'EvaluationPeriods' => 2,
