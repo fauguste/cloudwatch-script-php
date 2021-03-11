@@ -1,4 +1,5 @@
 <?php
+
 namespace CloudWatchScript;
 
 abstract class AbstractMonitoring
@@ -13,12 +14,14 @@ abstract class AbstractMonitoring
     public function __construct($config, $name)
     {
         $this->config = $config;
-        $this->name = $name;
+        $this->name   = $name;
     }
+
     /**
      * @return string The metric
      */
     abstract public function getMetric();
+
     /**
      * (string: Seconds | Microseconds | Milliseconds | Bytes | Kilobytes | Megabytes | Gigabytes | Terabytes |
      *   Bits | Kilobits | Megabits | Gigabits | Terabits | Percent | Count | Bytes/Second | Kilobytes/Second |
@@ -27,17 +30,20 @@ abstract class AbstractMonitoring
      * @return integer
      */
     abstract public function getUnit();
+
     /**
      * ComparisonOperator : GreaterThanOrEqualToThreshold | GreaterThanThreshold | LessThanThreshold |
      * LessThanOrEqualToThreshold
-     * @return Array Array of alarm list. Each alamr contain ComparisonOperator, Threshold and Name
+     * @return Array Array of alarm list. Each alarm contain ComparisonOperator, Threshold and Name
      */
     abstract public function getAlarms();
 
     /**
+     * @param $alarmName Alarm name
      * @return String The metrics name associate to an alarm name.
      */
-    public function getMetricName() {
-      return $this->name;
+    public function getMetricName($alarmName)
+    {
+        return $this->name;
     }
 }

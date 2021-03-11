@@ -1,10 +1,11 @@
 <?php
+
 namespace CloudWatchScript\Plugins;
 
 use CloudWatchScript\AbstractMonitoring;
 
 /**
- * Check Solr using ping URL.
+ * Check SFTP using connection.
  * Add and configure the following lines to the config file
  * "Sftp" : {
  *         "name" : "Name of metric and alarm",
@@ -22,6 +23,7 @@ class SftpMonitoring extends AbstractMonitoring
     private $port;
     private $login;
     private $password;
+
     /**
      * @param array $config
      * @param String $name
@@ -29,11 +31,12 @@ class SftpMonitoring extends AbstractMonitoring
     public function __construct($config, $name)
     {
         parent::__construct($config, $name);
-        $this->addr = $this->config->addr;
-        $this->port = $this->config->port;
-        $this->login = $this->config->login;
+        $this->addr     = $this->config->addr;
+        $this->port     = $this->config->port;
+        $this->login    = $this->config->login;
         $this->password = $this->config->password;
     }
+
     /**
      * Check solr ping url.
      * @return metric 0 KO, 1 OK
@@ -53,6 +56,7 @@ class SftpMonitoring extends AbstractMonitoring
         }
         return 1;
     }
+
     /**
      * @return string "None"
      */
@@ -60,15 +64,18 @@ class SftpMonitoring extends AbstractMonitoring
     {
         return "None";
     }
+
     /**
      * @return integer 1
      */
     public function getAlarms()
     {
         return array(
-                    array("ComparisonOperator" => "LessThanThreshold",
-                          "Threshold" => 1,
-                          "Name" => $this->name)
-                    );
+            array(
+                "ComparisonOperator" => "LessThanThreshold",
+                "Threshold" => 1,
+                "Name" => $this->name
+            )
+        );
     }
 }

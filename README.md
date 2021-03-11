@@ -85,7 +85,7 @@ php delete-alarmes.php [-f config-file]
 | Sftp | Monitoring SFTP access |
 | Memory | Monitoring memory percentage of used |
 | Http | Monitoring HTTP URL with pattern |
-| Elastics | Monitoring elastic search |
+| Elastics | Monitoring Elasticsearch |
 | SolrCdcr | Monitoring CDCR |
 
 

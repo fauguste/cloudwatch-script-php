@@ -1,10 +1,11 @@
 <?php
+
 namespace CloudWatchScript\Plugins;
 
 use CloudWatchScript\AbstractMonitoring;
 
 /**
- * Check Solr using ping URL.
+ * Check disk inodes using df.
  * Add and configure the following lines to the config file
  * "INodes" : {
  *         "name" : "INodes",
