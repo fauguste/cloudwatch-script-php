@@ -12,8 +12,8 @@ function getCloudWatchClient($conf)
         ));
     }
     return CloudWatchClient::factory(array(
-        'credentials' => array (
-            'key'    => $conf->aws->key,
+        'credentials' => array(
+            'key' => $conf->aws->key,
             'secret' => $conf->aws->secret
         ),
         'region' => $conf->aws->region,
@@ -23,11 +23,11 @@ function getCloudWatchClient($conf)
 
 function getConfigFile()
 {
-    $longopts  = array(
-      "required:"     // Valeur requise
+    $longopts = array(
+        "required:"     // Valeur requise
     );
     if (array_key_exists('f', $args = getopt("f:", $longopts))) {
         return json_decode(file_get_contents($args['f']));
     }
-    return json_decode(file_get_contents(APPLICATION_PATH.'/conf/config.json'));
+    return json_decode(file_get_contents(APPLICATION_PATH . '/conf/config.json'));
 }

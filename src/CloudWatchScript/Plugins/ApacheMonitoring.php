@@ -1,11 +1,12 @@
 <?php
+
 namespace CloudWatchScript\Plugins;
 
 use CloudWatchScript\AbstractMonitoring;
 
 /**
- * Check Solr using ping URL.
- * Add and configure the folliwong lines to the config file
+ * Count Apache processes.
+ * Add and configure the following lines to the config file
  * "Apache" : {
  *         "name" : "Name of metric and alarm",
  *         "maxProcess": 100,
@@ -28,14 +29,14 @@ class ApacheMonitoring extends AbstractMonitoring
     }
 
     /**
-     * @return integer Number of apache processus
+     * @return integer Number of apache processes
      */
     public function getMetric()
     {
         exec('ps aux | grep apache', $output);
         return count($output);
-
     }
+
     /**
      * @return string "None"
      */
@@ -50,12 +51,16 @@ class ApacheMonitoring extends AbstractMonitoring
     public function getAlarms()
     {
         return array(
-                array("ComparisonOperator" => "LessThanOrEqualToThreshold",
-                        "Threshold" => 0,
-                        "Name" => $this->name . " shutdown"),
-                array("ComparisonOperator" => "GreaterThanThreshold",
-                        "Threshold" => $this->maxApacheProcess,
-                        "Name" => $this->name . " max process")
+            array(
+                "ComparisonOperator" => "LessThanOrEqualToThreshold",
+                "Threshold" => 0,
+                "Name" => $this->name . " shutdown"
+            ),
+            array(
+                "ComparisonOperator" => "GreaterThanThreshold",
+                "Threshold" => $this->maxApacheProcess,
+                "Name" => $this->name . " max process"
+            )
         );
     }
 }

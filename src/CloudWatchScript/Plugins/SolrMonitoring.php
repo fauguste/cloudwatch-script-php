@@ -1,21 +1,23 @@
 <?php
+
 namespace CloudWatchScript\Plugins;
 
 use CloudWatchScript\AbstractMonitoring;
 
 /**
  * Check Solr using ping URL.
- * Add and configure the folliwong lines to the config file
+ * Add and configure the following lines to the config file
  * "Solr" : {
  *         "name" : "Name of metric and alarm",
  *         "url": "http://localhost:8080/solr/collection1/admin/ping",
  *         "namespace": "Metric/Namespace",
- *         "description": "Descrption"
+ *         "description": "Description"
  * }
  */
 class SolrMonitoring extends AbstractMonitoring
 {
     private $solrPingUrl;
+
     /**
      * @param array $config
      * @param String $name
@@ -25,6 +27,7 @@ class SolrMonitoring extends AbstractMonitoring
         parent::__construct($config, $name);
         $this->solrPingUrl = $this->config->url;
     }
+
     /**
      * Check solr ping url.
      * @return metric 0 Ok, 1 KO
@@ -36,6 +39,7 @@ class SolrMonitoring extends AbstractMonitoring
         }
         return 1;
     }
+
     /**
      * @return string "None"
      */
@@ -43,15 +47,18 @@ class SolrMonitoring extends AbstractMonitoring
     {
         return "None";
     }
+
     /**
      * @return integer 1
      */
     public function getAlarms()
     {
         return array(
-                    array("ComparisonOperator" => "LessThanThreshold",
-                          "Threshold" => 1,
-                          "Name" => $this->name)
-                    );
+            array(
+                "ComparisonOperator" => "LessThanThreshold",
+                "Threshold" => 1,
+                "Name" => $this->name
+            )
+        );
     }
 }

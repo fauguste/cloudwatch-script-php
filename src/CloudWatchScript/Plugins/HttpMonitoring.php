@@ -5,14 +5,14 @@ namespace CloudWatchScript\Plugins;
 use CloudWatchScript\AbstractMonitoring;
 
 /**
- * Check Solr using ping URL.
- * Add and configure the folliwong lines to the config file
+ * Check URL.
+ * Add and configure the following lines to the config file
  * "Http" : {
  *         "name" : "Name of metric and alarm",
  *         "url": "http://localhost:8080/solr/collection1/admin/ping",
  *         "pattern": "ds",
  *         "namespace": "Metric/Namespace",
- *         "description": "Descrption"
+ *         "description": "Description"
  * }
  */
 class HttpMonitoring extends AbstractMonitoring
@@ -27,7 +27,7 @@ class HttpMonitoring extends AbstractMonitoring
     public function __construct($config, $name)
     {
         parent::__construct($config, $name);
-        $this->url = $this->config->url;
+        $this->url     = $this->config->url;
         $this->pattern = $this->config->pattern;
     }
 

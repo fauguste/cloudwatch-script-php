@@ -1,14 +1,14 @@
 language: php
 
 php:
-- 5.5
 - 5.6
-- hhvm
+- 7.4
+- 8.0
 
 install:
   - composer install --verbose --dev
-  
-before_script: 
+
+before_script:
 - curl -sSL https://raw.githubusercontent.com/moliware/travis-solr/master/travis-solr.sh | SOLR_VERSION=4.10.3 bash
 
 after_script:
@@ -20,7 +20,7 @@ before_deploy:
 
 deploy:
   provider: releases
-  api_key: 
+  api_key:
     secure: hF0Ni/BeP8J27UfKArOLbxh4luVWO0LJmoxwMiJYRPIjyWgvSXQ10pxZ0Ygr8ea+FBrE0FktNqeoUz8lu5aoehJuGTCKlGfRUWfZDbv4lXMDLa853x62IiICNEeZdUHvg3QZOcyE+u6mnTvuHcB61IOq+Dr/vyL+uAWmAzazbdA=
   file: "bin.tgz"
   skip_cleanup: true
